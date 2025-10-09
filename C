@@ -270,6 +270,12 @@ brctl show
 
 
 ---
+fdisk -l	List all disks with details
+lsblk	Simple tree view of disks and partitions
+pvdisplay	Check disks used by LVM
+df -h	Check mounted filesystems
+
+
 
 Storage Management Commands (LVM)
 
