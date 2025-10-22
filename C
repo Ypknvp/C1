@@ -1,3 +1,89 @@
+
+installation kvm and creation of virtual instances
+
+steps:
+
+check CPU support if 1 or more proceed ->  egrep -c 'lm' /proc/cpuinfo
+
+check  64 bit support -> uname -a
+
+install steps: 
+		sudo apt-cache search qemu-kvm
+		
+		sudo apt-get install qemu-kvm
+		
+		sudo apt-get install libvirt-bin
+
+		sudo apt-get install bridge-utils qemu-system virt-manager
+
+configure libvirtd
+
+		sudo nano /etc/libvirt/libvirtd.conf
+
+modify or add lines
+
+		listen_addr = "0.0.0.0" 
+		unix_sock_group = "libvirt" 
+		unix_sock_ro_perms = "0777"
+		unix_sock_rw_perms = "0777"
+		unix_sock_dir = "/var/run/libvirt"
+		auth_unix_ro = "none" 
+		auth_unix_rw = "none"
+
+verify virtualisation services
+		
+		virsh list
+		virsh
+		version
+		nodeinfo
+
+don't close the terminal
+
+inside  your vm their will be virtual machine manager [as terminal]
+
+open if shows QEMU/KVM-NOT Connected
+
+go to terminal back - give ctrl c
+
+steps to connect do below
+
+		sudo systemctl start libvirtd
+		sudo systemctl enable libvirtd
+		sudo systemctl status libvirtd 
+
+go and check still shows not connect do below
+
+		sudo systemctl restart libvirtd
+		sudo systemctl restart virtlogd
+		virt-manager
+
+then it will be connected
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Sure! Here’s the super-simple, minimal version of installing KVM on Ubuntu:
 
 sudo apt update && sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
